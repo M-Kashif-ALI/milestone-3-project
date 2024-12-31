@@ -1,21 +1,25 @@
 "use client"
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { CartContext } from '../context'
 
 interface productTypes {
-  id: number
-  name: string
-  title: string
-  description: string
-  price: number
-  img: string
+  id: number;
+  name: string;
+  title: string;
+  description: string;
+  detailDescription: string;
+  price: number;
+  img: string;
+  quantity: number;
 }
 
 
 const Product = () => {
 
   const [product, setproduct] = useState<productTypes[]>([])
+  const {add} = useContext(CartContext)
 
   useEffect(() => {
     const products = async () => {
@@ -44,16 +48,17 @@ const Product = () => {
                   </p>
                 </Link>
                 <p className='text-center text-gray-500'>{items.description}</p>
-                <Link href={`/product/${items.id}`} className='flex justify-around'>
-                  <div className="border-2 px-5 py-2 rounded-md cursor-pointer w-fit my-5 bg-blue-500 hover:bg-blue-400 duration-200 font-semibold">
+                <div className='flex items-center justify-between'>
+                  <div className="border-2 px-5 py-2 rounded-md cursor-pointer w-fit my-5 bg-blue-500 hover:bg-blue-400 duration-200 font-semibold" onClick={() => add({ ...items, quantity: 1 })}>
                     Add To Cart
                   </div>
+                
                   <div
                     className="border-2 px-5 py-2 rounded-md cursor-pointer w-fit my-5 font-semibold text-white bg-[rgb(255,105,135)] hover:bg-gradient-to-r hover:from-[rgb(255,105,135)] hover:to-[rgb(255,183,77)] transition-colors"
                   >
                     Add To WishList
                   </div>
-                </Link>
+                  </div>
               </div>
             </div>
           ))
