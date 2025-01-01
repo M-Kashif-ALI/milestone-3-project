@@ -23,7 +23,7 @@ const Product = () => {
 
   useEffect(() => {
     const products = async () => {
-      const fetchData = await fetch("http://localhost:3000/api/product")
+      const fetchData = await fetch("api/product")
       const fetchedData = await fetchData.json()
       setproduct(fetchedData)
     };
