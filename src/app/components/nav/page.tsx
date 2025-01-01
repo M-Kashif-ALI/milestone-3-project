@@ -15,7 +15,7 @@ const Logo = () => {
       {/* Logo Section */}
       <div>
         <Image
-          src="/images/Logo (1).png"
+          src="/images/logo.png"
           height={85}
           width={500}
           alt="logo"
